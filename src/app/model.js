@@ -3,12 +3,14 @@ import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/forkJoin'
+import 'rxjs/add/observable/forkJoin';
 
 import _ from 'lodash';
 
 class Model {
+
     constructor(){
+        
         this.chores = [];
         this.users = [];
 
@@ -110,14 +112,16 @@ class Model {
         Observable.ajax({
             url: 'http://localhost:3000/chores/' + id,
             method: 'delete',
-        }).subscribe(() => {
+        })
+        
+            .subscribe(() => {
 
-            let boundUpdateChores = updateChores.bind(model);
+                let boundUpdateChores = updateChores.bind(model);
 
-            model.chores = _.pullAllBy(model.chores, [{ 'id': parsedIndex }], 'id');
-            boundUpdateChores();
-        }); 
+                model.chores = _.pullAllBy(model.chores, [{ 'id': parsedIndex }], 'id');
+                boundUpdateChores();
+            }); 
     }
 }
 
-export { Model }
+export { Model };
