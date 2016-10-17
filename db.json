@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Joe"
+    },
+    {
+      "id": 2,
+      "name": "William"
+    },
+    {
+      "id": 3,
+      "name": "Chris"
+    },
+    {
+      "id": 4,
+      "name": "Tom"
+    },
+    {
+      "id": 5,
+      "name": "Henry"
+    },
+    {
+      "id": 6,
+      "name": "Oliver"
+    }
+  ],
+  "chores": [
+    {
+      "name": "bbb",
+      "id": 16
+    },
+    {
+      "name": "ccc",
+      "id": 17
+    },
+    {
+      "name": "ddd",
+      "id": 18
+    },
+    {
+      "name": "eee",
+      "id": 19
+    },
+    {
+      "name": "fff",
+      "id": 20
+    },
+    {
+      "name": "ggg",
+      "id": 21
+    },
+    {
+      "name": "aaa",
+      "id": 22
+    },
+    {
+      "name": "www",
+      "id": 23
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
