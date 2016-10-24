@@ -10,11 +10,13 @@ const choresTemplate = `<% _.forEach(chores, function(chore)
 
 function buildChores(chores){
 
-    "use strict";
+    'use strict';
 
     let compiledTemplate = _.template(choresTemplate);
 
-    $('#choresList').empty().append( compiledTemplate({ 'chores': chores }) );
+    $('#choresList').empty()
+    
+        .append( compiledTemplate( { 'chores': chores } ) );
 }
 
 export { buildChores };

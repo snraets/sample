@@ -6,6 +6,8 @@ import { buildChores } from './builder';
 
 export default function Start(){
 
+    'use strict';
+
     const model = new Model();
 
     model.subscribeChores(buildChores);
@@ -13,9 +15,10 @@ export default function Start(){
     model.init();    
     
     Observable.fromEvent($('#addChore'), 'click')
+        
         .subscribe((event)=>{    
 
-            let newChore = [{"id":null,"name":$("#newChore").val(), userId:null}];
+            let newChore = [{"id":null,"name":$("#newChore").val(), userId:null }];
 
             model.addChores(newChore);
             
@@ -24,6 +27,7 @@ export default function Start(){
         }, () => {})
 
     Observable.fromEvent($("#choresList"), 'click')
+        
         .subscribe((event) => {
 
             let id = $(event.target).attr("id");
@@ -32,6 +36,7 @@ export default function Start(){
         });
 
     Observable.fromEvent($("#sortChores"), 'click')
+        
         .subscribe((event) => {
             
             model.sortChores();
