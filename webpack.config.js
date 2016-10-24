@@ -1,36 +1,42 @@
-
+var resolve = require('path').resolve;
 var webpack = require('webpack');
 var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin");
 var HtmlWebpackPLugin = require('html-webpack-plugin');
 
+var plugins = [
+            new HtmlWebpackPLugin({
+                template: './src/index.html',
+                inject: 'body'            
+            }),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify('production')
+            }) 
+        ];
+
+    if(process.env.NODE_ENV !== 'TEST'){
+        plugins.push(        
+            //new CommonsPlugin('polyfills', 'polyfills.js', Infinity),
+            new CommonsPlugin({
+                name: 'polyfills'
+            })); //, Infinity );
+    }        
+
 module.exports = {
     //entry: './src/main.js',
     entry: {
-        'app':'./src/main.js',
         'polyfills': [
             'core-js/es6'
         ],
         'css': [
             './src/css/common.less'
-        ]
+        ],
+        'app':'./src/main.js',
     },
     output:{
-        path:'./dist',
-        filename:'[name].bundle.js'
+        path:resolve(__dirname, 'dist'),
+        filename:'[name].[chunkhash].bundle.js'
     },   
-  plugins: [
-    new CommonsPlugin({
-      name: 'polyfills'
-    }),
-    new HtmlWebpackPLugin({
-        template: './src/index.html',
-        inject: 'body'
-        
-    }) ,
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    })      
-  ],  
+    plugins: plugins,  
     module:{
         loaders: [
             { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
@@ -39,4 +45,4 @@ module.exports = {
             { test: /\.html$/, loader: "raw-loader" }       
         ]
     }
-}
+};
